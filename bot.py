@@ -24,6 +24,9 @@ class MyClient(botpy.Client):
             if len(await self.api.get_channels(guild_id=message.guild_id)) >= 32:
                 await self.api.post_message(message.channel_id, content="当前售后数已达到上限，请稍后再试")
                 pass
+            if message.author.username in channel_dict.keys():
+                await self.api.post_message(message.channel_id, content="您已经创建专属售后频道")
+                pass
             temp_channel = await self.api.create_channel(
                 guild_id=message.guild_id,
                 name=message.author.username+"的专属售后频道",
